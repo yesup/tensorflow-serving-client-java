@@ -4,7 +4,7 @@
     <groupId>com.yesup.oss</groupId>
     <artifactId>tensorflow-client</artifactId>
     <packaging>jar</packaging>
-    <version>1.4-2</version>
+    <version>1.4-3</version>
     <name>tensorflow-client</name>
     <description>Prebuilt tensorflow serving client</description>
     <licenses>
@@ -33,32 +33,50 @@
     <scm>
         <url>https://github.com/yesup/tensorflow-serving-client-java.git</url>
     </scm>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <!-- plugin version -->
+        <plugin.compiler.version>3.7.0</plugin.compiler.version>
+        <plugin.gpg.version>1.6</plugin.gpg.version>
+        <plugin.jar.version>3.0.2</plugin.jar.version>
+        <plugin.javadoc.version>3.0.0</plugin.javadoc.version>
+        <plugin.nexus-staging.version>1.6.8</plugin.nexus-staging.version>
+        <plugin.os.version>1.5.0.Final</plugin.os.version>
+        <plugin.protobuf.version>0.5.1</plugin.protobuf.version>
+        <plugin.source.version>3.0.1</plugin.source.version>
+        <!-- dependency version -->
+        <grpc.version>1.9.0</grpc.version>
+        <junit.version>4.12</junit.version>
+        <log4j.version>1.2.17</log4j.version>
+        <protobuf.version>3.5.1</protobuf.version>
+        <slf4j.version>1.7.25</slf4j.version>
+    </properties>
     <dependencies>
         <dependency>
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>
-            <version>1.2.17</version>
+            <version>${log4j.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-log4j12</artifactId>
-            <version>1.7.21</version>
+            <version>${slf4j.version}</version>
         </dependency>
         <dependency>
             <groupId>io.grpc</groupId>
             <artifactId>grpc-protobuf</artifactId>
-            <version>1.7.0</version>
+            <version>${grpc.version}</version>
         </dependency>
         <dependency>
             <groupId>io.grpc</groupId>
             <artifactId>grpc-stub</artifactId>
-            <version>1.7.0</version>
+            <version>${grpc.version}</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.12</version>
+            <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -67,13 +85,13 @@
             <extension>
                 <groupId>kr.motd.maven</groupId>
                 <artifactId>os-maven-plugin</artifactId>
-                <version>1.4.1.Final</version>
+                <version>${plugin.os.version}</version>
             </extension>
         </extensions>
         <plugins>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.6.0</version>
+                <version>${plugin.compiler.version}</version>
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
@@ -82,11 +100,11 @@
             <plugin>
                 <groupId>org.xolstice.maven.plugins</groupId>
                 <artifactId>protobuf-maven-plugin</artifactId>
-                <version>0.5.0</version>
+                <version>${plugin.protobuf.version}</version>
                 <configuration>
-                    <protocArtifact>com.google.protobuf:protoc:3.0.2:exe:${os.detected.classifier}</protocArtifact>
+                    <protocArtifact>com.google.protobuf:protoc:${protobuf.version}:exe:${os.detected.classifier}</protocArtifact>
                     <pluginId>grpc-java</pluginId>
-                    <pluginArtifact>io.grpc:protoc-gen-grpc-java:1.2.0:exe:${os.detected.classifier}</pluginArtifact>
+                    <pluginArtifact>io.grpc:protoc-gen-grpc-java:${grpc.version}:exe:${os.detected.classifier}</pluginArtifact>
                 </configuration>
                 <executions>
                     <execution>
@@ -100,7 +118,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
-                <version>2.2.1</version>
+                <version>${plugin.source.version}</version>
                 <executions>
                     <execution>
                         <id>attach-sources</id>
@@ -113,7 +131,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
-                <version>2.9.1</version>
+                <version>${plugin.javadoc.version}</version>
                 <executions>
                     <execution>
                         <id>attach-javadocs</id>
@@ -125,7 +143,7 @@
             </plugin>
             <plugin>
                 <artifactId>maven-jar-plugin</artifactId>
-                <version>3.0.2</version>
+                <version>${plugin.jar.version}</version>
                 <configuration>
                     <archive>
                         <manifest>
@@ -140,7 +158,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-gpg-plugin</artifactId>
-                <version>1.5</version>
+                <version>${plugin.gpg.version}</version>
                 <executions>
                     <execution>
                         <id>sign-artifacts</id>
@@ -154,7 +172,7 @@
             <plugin>
                 <groupId>org.sonatype.plugins</groupId>
                 <artifactId>nexus-staging-maven-plugin</artifactId>
-                <version>1.6.8</version>
+                <version>${plugin.nexus-staging.version}</version>
                 <extensions>true</extensions>
                 <configuration>
                     <serverId>ossrh</serverId>
