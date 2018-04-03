@@ -4,7 +4,7 @@
     <groupId>com.yesup.oss</groupId>
     <artifactId>tensorflow-client</artifactId>
     <packaging>jar</packaging>
-    <version>1.4-4</version>
+    <version>1.4-5</version>
     <name>tensorflow-client</name>
     <description>Prebuilt tensorflow serving client</description>
     <licenses>
